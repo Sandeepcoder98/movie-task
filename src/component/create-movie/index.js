@@ -101,7 +101,7 @@ const CreateMovie = ({ id }) => {
         <Row className="align-items-center justify-content-between movie-header">
           <Col xs={12}>
             <div className="page-head">
-              <h4 className="page-title"> Create a new movie</h4>
+              <h4 className="page-title">{id ? "Edit" : "Create a new movie"}</h4>
             </div>
           </Col>
         </Row>
@@ -127,12 +127,11 @@ const CreateMovie = ({ id }) => {
                         className={`form-control ${errors.title && touched.title ? "is-invalid" : ""
                           }`}
                       />
-                      <span className="error-msg">
-                        <ErrorMessage
-                          name="title"
-                          component="div"
-                          className="invalid-feedback"
-                        /></span>
+                      <ErrorMessage
+                        name="title"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <div className="form-group">
                       <Field
@@ -144,18 +143,17 @@ const CreateMovie = ({ id }) => {
                           : ""
                           }`}
                       />
-                      <span className="error-msg">
-                        <ErrorMessage
-                          name="publishingYear"
-                          component="div"
-                          className="invalid-feedback"
-                        /></span>
+                      <ErrorMessage
+                        name="publishingYear"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <div className="btn-wrapper me-auto mt-5">
                       <Button variant="secondary" type="button" onClick={handleNavigate}>
                         Cancel
                       </Button>
-                      <Button type="submit">Submit</Button>
+                      <Button type="submit">{id ? "Update" : "Submit"}</Button>
                     </div>
                   </div>
                 </Col>

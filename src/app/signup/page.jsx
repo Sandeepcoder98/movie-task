@@ -58,41 +58,64 @@ const SignUp = () => {
                 validationSchema={SignupSchema}
                 onSubmit={handleSignUp}
               >
-                {() => (
+                {({ errors, touched }) => (
                   <Form className="form-card">
                     <div className="form-group">
                       <Field
                         name="name"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.name && touched.name ? "is-invalid" : ""
+                        }`}
                         placeholder="Enter name"
                       />
-                      <span className="error-msg">
-                        <ErrorMessage name="name" />
-                      </span>
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <div className="form-group">
                       <Field
                         name="email"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.email && touched.email ? "is-invalid" : ""
+                        }`}
                         placeholder="Enter email"
                       />
-                      <span className="error-msg">
-                        <ErrorMessage name="email" />
-                      </span>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <div className="form-group">
                       <Field
                         name="password"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.password && touched.password
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         placeholder="Enter password"
                       />
-                      <span className="error-msg">
-                        <ErrorMessage name="password" />
-                      </span>
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <Button type="submit" disabled={loading}>
-                      Login
+                      Sign Up
                     </Button>
+                    <h4 className="already-account">
+                      Already have an account?
+                      <Button
+                        onClick={() => router.push("/signin")}
+                        variant="plain"
+                      >
+                        Sign in
+                      </Button>
+                    </h4>
                   </Form>
                 )}
               </Formik>

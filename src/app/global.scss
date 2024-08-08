@@ -40,6 +40,10 @@ body {
   flex-direction: column;
   .bg-shape {
     margin-top: auto;
+    @media screen and (min-width: 768px) {
+      position: absolute;
+    bottom: 0;
+    }
     &.desktop {
       @media screen and (max-width: 767px) {
         display: none;
@@ -78,6 +82,21 @@ body {
   .form-card {
     align-items: center;
   }
+  .btn-plain {
+    color: var(--white);
+    padding: 0 !important;
+    &:hover {
+      color: var(--white);
+      
+    }
+  }
+  .already-account {
+    font-size: 14px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 .form-card {
   display: flex;
@@ -94,7 +113,7 @@ body {
     padding: 12px 16px;
     color: var(--white);
     font-size: 14px;
-    border: none;
+    border-color: var(--input-bg);
     border-radius: 10px;
     &::placeholder {
       color: var(--white);
@@ -200,8 +219,10 @@ body {
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 40px;
+    min-height: 500px;
     .empty-title {
       font-size: 48px;
       font-weight: 600;
@@ -273,8 +294,12 @@ body {
 }
 
 // Drag and drop styles
+.drag-wrapper {
+  margin-bottom: 20px;
+}
 .drag-card {
   min-height: 300px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -283,6 +308,10 @@ body {
   padding: 25px;
   text-align: center;
   margin-bottom: 25px;
+  flex-direction: column;
+  @media screen and (min-width: 1600px) {
+    min-height: 500px;
+  }
   @media screen and (max-width: 767px) {
     min-height: 370px;
   }
@@ -295,4 +324,10 @@ body {
     color: var(--white);
     margin-top: 15px;
   }
+}
+.thumb-drag {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 10px;
+  object-fit: cover;
 }

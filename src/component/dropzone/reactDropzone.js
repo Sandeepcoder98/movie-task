@@ -5,14 +5,15 @@ const ReactDropzone = ({ handleDrop, preview }) => {
     return (
         <Dropzone onDrop={handleDrop}>
             {({ getRootProps, getInputProps }) => (
-                <section >
+                <section className='drag-wrapper'>
                     <div {...getRootProps()} className='drag-card'>
                         <input {...getInputProps()} id={name} />
-                        <p>Drag 'n' drop some files here, or click to select files</p>
-                        {preview && (
-                            <img alt="" src={preview} />
-                        )}
+                        <img src='/assets/download-icon.svg' alt="download" />
+                        <p className='drag-title'>Drag 'n' drop some files here, or click to select files</p>
                     </div>
+                    {preview && (
+                        <img alt="" src={preview} className='img-fluid thumb-drag' />
+                    )}
                 </section>
             )}
         </Dropzone>

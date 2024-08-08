@@ -46,29 +46,51 @@ const SignIn = () => {
                 validationSchema={SignIpSchema}
                 onSubmit={handleLogin}
               >
-                {() => (
+                {({ errors, touched }) => (
                   <Form className="form-card">
                     <div className="form-group">
                       <Field
                         name="email"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.email && touched.email ? "is-invalid" : ""
+                        }`}
                         placeholder="Enter email"
                       />
-                      <span className="error-msg">
-                        <ErrorMessage name="email" />
-                      </span>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                     <div className="form-group">
                       <Field
                         name="password"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.password && touched.password
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         placeholder="Enter password"
                       />
-                      <ErrorMessage name="password" />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
+
                     <Button type="submit" disabled={loading}>
                       Login
                     </Button>
+                    <h4 className="already-account">
+                      Don't have an account?
+                      <Button
+                        onClick={() => router.push("/signup")}
+                        variant="plain"
+                      >
+                        Sign up here
+                      </Button>
+                    </h4>
                   </Form>
                 )}
               </Formik>

@@ -33,23 +33,25 @@ const AxiosProvider = ({ children }) => {
 
     axiosInstance.interceptors.response.use(
       (response) => {
-        return response;
+        if (response?.status === 200) {
+          return response;
+        }
+        if (!response) {
+          return toast.error("Network Error")
+        }
       },
       (error) => {
-        const { data } = error.response;
-
-        if (error.response && error.response.status === 404) {
-          console.log("error", error);
-
+        if (!error) {
+          return toast.error("Network Error")
+        }
+        const data = error?.response
+        if (error?.response && error?.response?.status === 404) {
+          toast.error("Network Error")
         }
         if (data?.errors?.length === 1) {
           toast.error(data?.errors[0])
         } else {
           toast.error(data?.errors)
-        }
-
-        if (error.response && error.response.status === 404) {
-          console.log("error", error)
         }
         return error
       }
