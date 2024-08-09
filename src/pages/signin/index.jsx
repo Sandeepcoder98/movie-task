@@ -24,8 +24,6 @@ const SignIn = () => {
   const handleLogin = async (data) => {
     setLoading(true);
     const res = await authService.signIn(data);
-    dispatch(authLogin({ token: "fdfsd" }));
-    router.push("/");
     setLoading(false);
     if (res) {
       dispatch(authLogin(res));

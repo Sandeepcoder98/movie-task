@@ -21,17 +21,15 @@ const MovieComponent = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
-  const [currentPage, setCurrentPage] = useState(0)
 
   const fetchMovieList = async () => {
     const params = `page=${page}`
     setLoading(true)
     const res = await authService.movieList(params);
     setLoading(false)
-    if (res?.films) {
-      setData(res?.films)
-      setTotalPages(res?.meta?.total_pages)
-      setCurrentPage(res?.meta?.current_page)
+    if (res) {
+      setData(res?.list || [])
+      setTotalPages(res?.totalRecords)
     }
   };
 
@@ -86,7 +84,7 @@ const MovieComponent = () => {
                 return <MovieCard data={movie} key={index} />
               })}
             </Row>
-            <ReactPaginate handlePaginate={handlePaginate} totalPages={totalPages} currentPage={currentPage} />
+            {/* <ReactPaginate handlePaginate={handlePaginate} totalPages={totalPages} /> */}
           </>
         ) : (
           !loading ? <div className="empty-movie-box">

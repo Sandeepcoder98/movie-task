@@ -75,10 +75,10 @@ const CreateMovie = ({ id }) => {
     if (res) {
       setInitialValues({
         title: res?.title,
-        publishingYear: res?.publishing_year
+        publishingYear: res?.year
       })
-      setPreview(res?.poster_url)
-      setImage(res?.poster_url)
+      setPreview(res?.image)
+      setImage(res?.image)
     }
   }
 

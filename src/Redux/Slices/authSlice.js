@@ -9,7 +9,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     authLogin(state, action) {
-      debugger
       state.user = action.payload
     },
     authLogout() {

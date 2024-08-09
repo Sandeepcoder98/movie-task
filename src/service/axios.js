@@ -1,11 +1,11 @@
 "use client";
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: '/api' //process.env.NEXT_PUBLIC_API_URL,
 });
 const AxiosProvider = ({ children }) => {
   const { token } = useSelector((state) => {
@@ -14,15 +14,15 @@ const AxiosProvider = ({ children }) => {
     }
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     createInstance()
-  }, [])
+  }, [token])
 
   const createInstance = () => {
     axiosInstance.interceptors.request.use(
       (config) => {
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
+          config.headers.Authorization = `bearer ${token}`;
         }
         return config;
       },
@@ -41,17 +41,10 @@ const AxiosProvider = ({ children }) => {
         }
       },
       (error) => {
-        if (!error) {
-          return toast.error("Network Error")
-        }
-        const data = error?.response
-        if (error?.response && error?.response?.status === 404) {
+        if (error?.response?.status === 500 || !error?.response?.status) {
           toast.error("Network Error")
-        }
-        if (data?.errors?.length === 1) {
-          toast.error(data?.errors[0])
-        } else {
-          toast.error(data?.errors)
+        } else if (error?.response?.status === 400) {
+          toast.error(error?.response?.data?.message)
         }
         return error
       }

@@ -11,47 +11,50 @@ const authService = {
 }
 
 async function signIn(body) {
-    const res = await API.post(apiPath.auth.signIn, body);
+    const res = await API.post(apiPath.auth.auth, body);
     if (res?.status === 200) {
-        return res?.data
+        return res?.data?.data
     }
     return null
 }
 
 async function signUp(body) {
-    const res = await API.post(apiPath.auth.signUp, body);
+    const res = await API.put(apiPath.auth.auth, body);
+    debugger
     if (res?.status === 200) {
-        return res?.data
+        return res?.data?.data
     }
     return null
 }
 
 async function movieList(param) {
-    const res = await API.post(`${apiPath.movies.list}?${param}`);
+    const res = await API.get(`${apiPath.movies.movies}?${param}`);
     if (res?.status === 200) {
-        return res?.data
+        return res?.data?.data
     }
     return null
 }
 
 async function movieDetails(id, body) {
-    const res = await API.get(`${apiPath.movies.create}/${id}`, body);
+    const res = await API.get(`${apiPath.movies.movies}/${id}`, body);
     if (res?.status === 200) {
-        return res?.data
+        return res?.data?.details
     }
     return null
 }
 
 async function createMovie(body) {
-    const res = await API.post(`${apiPath.movies.create}`, body);
+    const res = await API.post(`${apiPath.movies.movies}`, body);
+    debugger
     if (res?.status === 200) {
-        return res?.data
+        return res?.data?.data
     }
     return null
 }
 
 async function updateMovie(id, body) {
-    const res = await API.put(`${apiPath.movies.create}/${id}`, body);
+    const res = await API.put(`${apiPath.movies.movies}/${id}`, body);
+    debugger
     if (res?.status === 200) {
         return res?.data
     }

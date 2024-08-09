@@ -1,11 +1,9 @@
 const apiPath = {
     auth: {
-        signIn: 'signin',
-        signUp: 'signup'
+        auth: 'auth',
     },
     movies: {
-        create: '/films',
-        list: '/getdata'
+        movies: 'movies'
     }
 }
 export default apiPath;
