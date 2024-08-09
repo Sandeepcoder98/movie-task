@@ -19,16 +19,6 @@ export default function RootLayout({ children }) {
           <PersistGate loading={null} persistor={persistor}>
             <Layout>
               {children}
-              <img
-                alt="bg-shape"
-                src="/assets/bg-shape.svg"
-                className="img-fluid bg-shape desktop"
-              />
-              <img
-                alt="bg-shape"
-                src="/assets/bg-shape-mobile.svg"
-                className="img-fluid bg-shape mobile"
-              />
             </Layout>
           </PersistGate>
           <ToastContainer />

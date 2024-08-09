@@ -32,29 +32,18 @@ body {
 }
 .page-wrapper {
   background-color: #093545;
+  background-image: url("/assets/bg-shape.svg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100%;
   position: relative;
   margin: 0;
   min-height: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
-  .bg-shape {
-    margin-top: auto;
-    @media screen and (min-width: 768px) {
-      position: absolute;
-    bottom: 0;
-    }
-    &.desktop {
-      @media screen and (max-width: 767px) {
-        display: none;
-      }
-    }
-    &.mobile {
-      display: none;
-      @media screen and (max-width: 767px) {
-        display: block;
-      }
-    }
+  @media screen and (max-width: 767px) {
+    background-image: url("/assets/bg-shape-mobile.svg");
   }
 }
 .btn-wrapper {
@@ -159,14 +148,19 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 100px;
   width: 100%;
   height: 100%;
   @media screen and (max-width: 767px) {
-    margin-bottom: 0px;
+    margin-bottom: 150px;
+  }
+  &.movie-wrapper-empty {
+    align-items: center;
+    justify-content: center;
+  }
+  &.movie-empty {
+    align-items: flex-start;
   }
   .movie-header {
-    margin-top: 20px;
     margin-bottom: 50px;
     position: sticky;
     top: 0;
@@ -175,7 +169,7 @@ body {
     padding: 20px 0px;
     @media screen and (min-width: 1600px) {
       margin-top: 100px;
-    margin-bottom: 100px;
+      margin-bottom: 100px;
     }
     @media screen and (max-width: 767px) {
       margin-top: 50px;
@@ -222,7 +216,6 @@ body {
     justify-content: center;
     flex-direction: column;
     gap: 40px;
-    min-height: 500px;
     .empty-title {
       font-size: 48px;
       font-weight: 600;

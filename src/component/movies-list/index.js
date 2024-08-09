@@ -52,7 +52,7 @@ const MovieComponent = () => {
   }
 
   return (
-    <section className="movie-wrapper">
+    <section className={`movie-wrapper ${!loading && "movie-wrapper-empty"} ${data?.length && "movie-empty"}`}>
       <PageLoading loading={loading} />
       <Container>
         {data?.length ? (
